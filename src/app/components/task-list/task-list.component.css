@@ -1,0 +1,70 @@
+/* Estilos específicos del componente Task List */
+.task-list {
+  margin-top: 20px;
+}
+
+.task-item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 15px;
+  margin-bottom: 10px;
+  background: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+.task-item:hover {
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.task-item.completed {
+  background-color: #f8f9fa;
+  opacity: 0.8;
+}
+
+.task-id {
+  font-weight: bold;
+  color: #6c757d;
+  min-width: 40px;
+}
+
+.task-title {
+  flex: 1;
+  color: #333;
+}
+
+.task-item.completed .task-title {
+  color: #6c757d;
+}
+
+.filter-section {
+  margin: 20px 0;
+  padding: 15px;
+  background-color: #f8f9fa;
+  border-radius: 4px;
+}
+
+.filter-section label {
+  margin-right: 10px;
+  font-weight: 500;
+}
+
+.filter-section select {
+  padding: 8px 12px;
+  font-size: 14px;
+}
+
+button {
+  padding: 6px 12px;
+  font-size: 14px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+h1 {
+  color: #333;
+  margin-bottom: 30px;
+  text-align: center;
+}

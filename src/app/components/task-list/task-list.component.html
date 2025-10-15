@@ -1,0 +1,62 @@
+<!-- Template del componente Task List -->
+<div class="container">
+  <h1>Gestor de Tareas</h1>
+  
+  <!-- Estadísticas -->
+  <div class="stats">
+    <div class="stat-item">
+      <div class="stat-value">{{ totalCount }}</div>
+      <div class="stat-label">Total</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-value">{{ completedCount }}</div>
+      <div class="stat-label">Completadas</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-value">{{ pendingCount }}</div>
+      <div class="stat-label">Pendientes</div>
+    </div>
+  </div>
+
+  <!-- Selector de filtro -->
+  <div class="filter-section">
+    <label for="filter">Filtrar tareas: </label>
+    <select id="filter" [(ngModel)]="currentFilter">
+      <option value="all">Todas</option>
+      <option value="completed">Completadas</option>
+      <option value="pending">Pendientes</option>
+    </select>
+  </div>
+
+  <!-- Loading -->
+  <div *ngIf="loading" class="loading">
+    Cargando tareas...
+  </div>
+
+  <!-- Lista de tareas -->
+  <div *ngIf="!loading" class="task-list">
+    <!-- 
+      TODO: Usar la directiva estructural *appTaskFilter aquí
+      La sintaxis debe ser: *appTaskFilter="task; filter: currentFilter"
+      Iterar sobre las tareas con *ngFor
+    -->
+    <div *ngFor="let task of tasks">
+      <div *appTaskFilter="task; filter: currentFilter" 
+           class="task-item"
+           [class.completed]="task.completed">
+        <span class="task-id">#{{ task.id }}</span>
+        <span class="task-title" [style.text-decoration]="task.completed ? 'line-through' : 'none'">
+          {{ task.title }}
+        </span>
+        <button (click)="toggleTask(task)">
+          {{ task.completed ? 'Desmarcar' : 'Completar' }}
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mensaje cuando no hay tareas -->
+  <div *ngIf="!loading && tasks.length === 0" class="no-tasks">
+    No se encontraron tareas
+  </div>
+</div>
