@@ -16,7 +16,6 @@ export class TaskInterceptor implements HttpInterceptor {
    * 4. Re-lanzar el error después de loguearlo
    * 
    * PISTAS:
-   * - Usar req.clone({ setHeaders: { ... } })
    * - Usar pipe con delay(1500) y catchError
    * - En catchError, loguear el error y usar throwError para re-lanzarlo
    */

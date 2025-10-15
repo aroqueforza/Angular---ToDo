@@ -5,6 +5,7 @@ import { Task } from '../../models/task.interface';
 
 @Component({
   selector: 'app-task-list',
+  standalone: false,
   templateUrl: './task-list.component.html',
   styleUrls: ['./task-list.component.css']
 })

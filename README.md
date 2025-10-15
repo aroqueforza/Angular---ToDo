@@ -46,10 +46,11 @@ http://localhost:4200
   - Retorne `Observable<Task[]>`
 
 #### 2. Interceptor HTTP (`task.interceptor.ts`)
-- [ ] Agregar header `'X-App-Version': '1.0.0'` a todas las peticiones
-- [ ] Simular delay de 1500ms en las respuestas
-- [ ] Capturar y loguear errores con formato: `[ERROR HTTP]: Status {status} - URL: {url}`
-- [ ] Registrar correctamente en `app.module.ts` con `multi: true`
+- [ ] Implementar la lógica del interceptor con los siguientes requisitos:
+  - Agregar header `'X-App-Version': '1.0.0'` a todas las peticiones
+  - Simular delay de 1500ms en las respuestas
+  - Capturar y loguear errores con formato: `[ERROR HTTP]: Status {status} - URL: {url}`
+- [ ] Registrar el interceptor correctamente en `app.module.ts`
 
 #### 3. Directiva Estructural (`task-filter.directive.ts`)
 - [ ] Implementar directiva `*appTaskFilter` que:
@@ -74,48 +75,19 @@ http://localhost:4200
 | **Arquitectura** | 10% | Separación de responsabilidades |
 | **Código Limpio** | 10% | TypeScript, manejo de Observables |
 
-## 💡 Pistas y Consejos
+## 💡 Pistas Generales
 
-### Para el Servicio:
-```typescript
-// Usa pipe y map para limitar resultados
-return this.http.get<Task[]>(url).pipe(
-  map(tasks => tasks.slice(0, 20))
-);
-```
-
-### Para el Interceptor:
-```typescript
-// Clonar request con nuevo header
-const clonedReq = req.clone({
-  setHeaders: { 'X-App-Version': '1.0.0' }
-});
-
-// Agregar delay y manejo de errores
-return next.handle(clonedReq).pipe(
-  delay(1500),
-  catchError((error: HttpErrorResponse) => {
-    // Loguear error
-    return throwError(error);
-  })
-);
-```
-
-### Para la Directiva:
-```typescript
-// Crear vista si debe mostrarse
-this.viewContainer.createEmbeddedView(this.templateRef);
-
-// Limpiar vista si debe ocultarse
-this.viewContainer.clear();
-```
+- **RxJS**: Recuerda usar operadores como `pipe`, `map`, `delay`, `catchError`
+- **Interceptores**: Necesitan ser registrados como providers con una configuración especial
+- **Directivas Estructurales**: Requieren `TemplateRef` y `ViewContainerRef` para manipular el DOM
+- **Observables**: No olvides manejar las suscripciones para evitar memory leaks
 
 ## ⚠️ Errores Comunes a Evitar
 
-1. **Interceptor**: No olvidar `multi: true` en el registro
-2. **Directiva**: El `@Input` debe ser un setter para funcionar con `*`
-3. **Servicio**: No usar `.subscribe()` en el servicio, retornar el Observable
-4. **Componente**: Desuscribirse en `ngOnDestroy()` para evitar memory leaks
+1. **Interceptor**: Debe ser registrado correctamente en el módulo
+2. **Directiva**: El `@Input` debe implementarse de forma especial para funcionar con `*`
+3. **Servicio**: Retornar Observables, no suscribirse dentro del servicio
+4. **Componente**: Gestionar correctamente el ciclo de vida de las suscripciones
 
 ## 📦 Estructura del Proyecto
 ```
@@ -151,6 +123,9 @@ Los siguientes archivos contienen comentarios `// TODO:` que indican qué implem
 
 4. **`src/app/components/task-list/task-list.component.ts`**
    - Implementar métodos del componente
+
+5. **`src/app/app.module.ts`**
+   - Registrar el interceptor en el array de providers
 
 ## 🏁 Validación de la Entrega
 

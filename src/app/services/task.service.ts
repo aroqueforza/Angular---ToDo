@@ -16,7 +16,6 @@ export class TaskService {
    * - Hacer una petición GET a la API
    * - Limitar el resultado a las primeras 20 tareas usando pipe y map
    * - Retornar el Observable<Task[]>
-   * PISTA: usar this.http.get<Task[]>(url).pipe(map(...))
    */
   getTasks(): Observable<Task[]> {
     // TODO: Implementar

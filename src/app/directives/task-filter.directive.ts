@@ -6,7 +6,8 @@ import { Task } from '../models/task.interface';
  * Uso: <div *appTaskFilter="task; filter: currentFilter">
  */
 @Directive({
-  selector: '[appTaskFilter]'
+  selector: '[appTaskFilter]',
+  standalone: false
 })
 export class TaskFilterDirective {
   private hasView = false;
@@ -41,8 +42,8 @@ export class TaskFilterDirective {
    * TODO: Implementar método privado updateView()
    * Este método debe:
    * 1. Verificar si la tarea actual debe mostrarse según el filtro
-   * 2. Si debe mostrarse y no hay vista: crear la vista con this.viewContainer.createEmbeddedView(this.templateRef)
-   * 3. Si no debe mostrarse y hay vista: limpiar con this.viewContainer.clear()
+   * 2. Si debe mostrarse y no hay vista: crear la vista
+   * 3. Si no debe mostrarse y hay vista: limpiar
    * 
    * Lógica del filtro:
    * - 'all': mostrar siempre
