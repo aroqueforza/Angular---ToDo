@@ -122,6 +122,9 @@ this.viewContainer.clear();
 src/app/
 ├── components/
 │   └── task-list/
+│       ├── task-list.component.ts
+│       ├── task-list.component.html
+│       └── task-list.component.css
 ├── services/
 │   └── task.service.ts
 ├── interceptors/
@@ -133,11 +136,54 @@ src/app/
 └── app.module.ts
 ```
 
-## 🏁 Entrega
-- El proyecto debe ejecutarse sin errores con `ng serve`
-- Todos los requisitos técnicos deben estar implementados
-- El interceptor debe mostrar logs en la consola del navegador
+## 🔍 Archivos a Modificar
+
+Los siguientes archivos contienen comentarios `// TODO:` que indican qué implementar:
+
+1. **`src/app/services/task.service.ts`**
+   - Implementar llamada a la API
+
+2. **`src/app/interceptors/task.interceptor.ts`**
+   - Implementar lógica del interceptor
+
+3. **`src/app/directives/task-filter.directive.ts`**
+   - Implementar lógica de filtrado
+
+4. **`src/app/components/task-list/task-list.component.ts`**
+   - Implementar métodos del componente
+
+## 🏁 Validación de la Entrega
+
+### El proyecto está completo cuando:
+- ✅ Se muestran 20 tareas de la API
+- ✅ Se puede cambiar el estado de las tareas
+- ✅ El filtro funciona correctamente
+- ✅ Las estadísticas se actualizan en tiempo real
+- ✅ Se ve "Cargando..." durante 1.5 segundos (interceptor)
+- ✅ En la consola se ve el header personalizado en las peticiones
+- ✅ Los errores HTTP se loguean en la consola
+
+### Para verificar el interceptor:
+1. Abrir las DevTools del navegador (F12)
+2. Ir a la pestaña Network
+3. Verificar que las peticiones tienen el header `X-App-Version: 1.0.0`
+4. Verificar que hay un delay de 1.5 segundos
+
+## 📚 Recursos Permitidos
+
+- Documentación oficial de Angular: https://angular.io/docs
+- Documentación de RxJS: https://rxjs.dev/
+- Documentación de TypeScript: https://www.typescriptlang.org/docs/
+
+## ❌ NO Permitido
+
+- Usar librerías externas no incluidas
+- Modificar `app.module.ts` (excepto para verificar el interceptor)
+- Cambiar la estructura de carpetas
+- Usar ChatGPT, Copilot u otras IAs durante la prueba
 
 ---
 
 **¡Buena suerte! 🍀**
+
+*Recuerda: El código ya tiene la estructura base. Solo necesitas completar los TODOs.*
